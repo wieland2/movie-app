@@ -1,0 +1,15 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.right-section {
+  list-style: none;
+  display: flex;
+  row-gap: 10px;
+}

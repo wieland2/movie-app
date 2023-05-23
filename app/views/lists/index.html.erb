@@ -1,0 +1,11 @@
+<% @lists.each do |list|%>
+<%= link_to list.title, list_path(list) %>
+<div class="list-index-flexbox">
+<% list.bookmarks.first(4).each do |bookmark| %>
+<%= link_to bookmark.movie do %>
+<p><img src="<%=bookmark.movie.poster_url%>" width="230" height="310"></p>
+<% end %>
+<% end %>
+</div>
+<% end %>
+

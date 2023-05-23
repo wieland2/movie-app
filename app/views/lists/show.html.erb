@@ -1,0 +1,34 @@
+
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :movie_id ,label: false, collection: Movie.all.map { |movie| [movie.title, movie.id, { class: "nice-class" }]}  %>
+  <%= f.button :submit,  { class: "submit-button" } %>
+<% end %>
+
+
+
+<%= @list.title %>
+<div class="list-show-grid">
+<% @list.bookmarks.each do |bookmark| %>
+<%= link_to bookmark.movie do %>
+<img src="<%= bookmark.movie.poster_url%>" width="230" height="310">
+<% end %>
+<% end %>
+  </div>
+
+
+
+
+  <%= link_to "Delete",
+    list_path(@list),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+
+
+<%= simple_form_for  @like do |f| %>
+<%= f.input :likeable_type, :as => :hidden, :input_html => { :value => "List" } %>
+<%= f.input :likeable_id, :as => :hidden, :input_html => { :value => @list.id } %>
+  <%= f.submit %>
+<% end %>
+
+<%= @list.likes.count %>

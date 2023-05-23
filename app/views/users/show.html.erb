@@ -1,0 +1,39 @@
+<%= @user.email %>
+
+<% @lists.each do |list|%>
+<%= link_to list.title, list_path(list) %>
+<div class="list-index-flexbox">
+<% list.bookmarks.first(4).each do |bookmark| %>
+<%= link_to bookmark.movie do %>
+<p><img src="<%=bookmark.movie.poster_url%>" width="230" height="310"></p>
+<% end %>
+<% end %>
+</div>
+<% end %>
+
+
+
+
+<%= simple_form_for(@list) do |f| %>
+  <%= f.input :title%>
+  <%= f.submit %>
+<% end %>
+
+
+
+  <% if @friendships.empty? && @user.id != current_user.id %>
+    <%= simple_form_for [@user, @friendship] do |f| %>
+    <%= f.submit "Follow" %>
+    <% end %>
+  <% elsif @friendships.empty? === false %>
+  <% @friendships.each do |friendship| %>
+  <%= link_to "Unfollow", friendship_path(friendship), data: {turbo_method: :delete} %>
+<% end %>
+  <% else %>
+  <% end %>
+
+
+
+<%= @user.friendships_as_asker.size%>
+
+<%= @user.friendships_as_receiver.size%>

@@ -1,0 +1,6 @@
+
+<% @movies.each do |movie| %>
+<%= link_to movie_path(movie) do %>
+<img src="<%= movie.poster_url%>" width="230" height="310">
+<% end %>
+<% end %>
